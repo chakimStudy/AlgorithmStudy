@@ -6,7 +6,7 @@
 <table>
   <tr>
     <td align="center"><a href="https://github.com/ksy00826"><img src="https://avatars.githubusercontent.com/u/76732805?v=4" width="120px;" alt=""/><br /><sub><b>김승연</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/whwhdnfl2"><img src="https://avatars.githubusercontent.com/u/76732805?v=4" width="120px;" alt=""/><br /><sub><b>차민준</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/whwhdnfl2"><img src="https://avatars.githubusercontent.com/u/62837074?v=4" width="120px;" alt=""/><br /><sub><b>차민준</b></sub></a><br /></td>
   </tr>
 </table>
 <br>
