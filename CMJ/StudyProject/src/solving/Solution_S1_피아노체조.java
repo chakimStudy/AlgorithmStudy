@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Solution_S1_피아노체조 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
+		System.out.println("ㅜㅑㅊㅂㅇㅁ나ㅓ옴나ㅗㅓㅇ");
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(in.readLine());
 		String[] str = in.readLine().split(" ");
