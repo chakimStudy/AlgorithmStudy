@@ -2,27 +2,16 @@ package solving;
 
 class UserSolution
 {
-	public void init()
-	{
-	}
-	
-	public void hire(int mID, int mTeam, int mScore)
-	{
-	}
-	
-	public void fire(int mID)
+	public void init(int N, int mMap[][])
 	{
 	}
 
-	public void updateSoldier(int mID, int mScore)
+	public int numberOfCandidate(int M, int mStructure[])
 	{
+		return 0;
 	}
 
-	public void updateTeam(int mTeam, int mChangeScore)
-	{
-	}
-	
-	public int bestSoldier(int mTeam)
+	public int maxArea(int M, int mStructure[], int mSeaLevel)
 	{
 		return 0;
 	}
