@@ -32,7 +32,7 @@ public class Solution_G5_14719_빗물 {
 
 	private static void check(int y) {
 		int length = water.length;
-		for(int i = 0; i < y; i++) {
+		for(int i = y - 1; i >= 0; i++) {
 			
 		}
 		for(int i = y; i < length; i++) {
