@@ -28,15 +28,46 @@ public class Solution_G5_14719_빗물 {
 		for(int i = 1; i < W - 1; i++) {
 			check(i);
 		}
+		System.out.println(ans);
 	}
 
 	private static void check(int y) {
 		int length = water.length;
-		for(int i = y - 1; i >= 0; i++) {
+		
+		int check1 = -1;
+		int check2 = -1;
+		
+		for(int i = y - 1; i >= 0; i--) {
+			if(check1 == -1) {
+				if(water[i] >= water[y]) {
+					check1 = water[i];
+				}
+			}else {
+				if(water[i] > check1) {
+					check1 = water[i];
+				}
+			}
 			
 		}
-		for(int i = y; i < length; i++) {
-			
+		for(int i = y + 1; i < length; i++) {
+			if(check2 == -1) {
+				if(water[i] >= water[y]) {
+					check2 = water[i];
+				}
+			}else {
+				if(water[i] > check2) {
+					check2 = water[i];
+				}
+			}
+		}
+		
+		if(check1 != -1 && check2 != -1) {
+			if(check1 >= check2) {
+				ans += check2 - water[y];
+				
+			}else {
+				ans += check1 - water[y];
+			}
 		}
 	}
 }
