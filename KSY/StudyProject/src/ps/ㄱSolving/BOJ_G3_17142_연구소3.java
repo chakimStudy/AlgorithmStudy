@@ -24,6 +24,10 @@ public class BOJ_G3_17142_연구소3 {
             this.depth = depth;
         }
 
+        @Override
+        public String toString() {
+            return "(" + r + ", " + c + ")";
+        }
     }
     static int N, M;
     static int[][] map;
@@ -39,18 +43,19 @@ public class BOJ_G3_17142_연구소3 {
         virus = new ArrayList<>();
         for (int i = 0; i < N; i++){
             st = new StringTokenizer(in.readLine());
-            for (int j = 0; j < M; j++){
+            for (int j = 0; j < N; j++){
                 map[i][j] = Integer.parseInt(st.nextToken());
                 if (map[i][j] == 2){
                     virus.add(new Pos(i, j));
                 }
             }
         }
+        System.out.println(virus);
 
         //바이러스 위치 선택
         int virusN = virus.size();
-        combRes = new int[virusN];
-        comb(0, 0, virusN); //조합: 뽑은 원소 수, 시작 인덱스
+        combRes = new int[M];
+        comb(0, 0, virusN); //조합: 뽑은 원소 수, 시작 인덱스, 총 개수(종료)
 
         System.out.println(minTime);
     }
@@ -59,19 +64,21 @@ public class BOJ_G3_17142_연구소3 {
     private static void comb(int cnt, int start, int size) {
         if (cnt == M) {
             //원소 다 뽑음 -> 바이러스 퍼트림
+//            System.out.println(Arrays.toString(combRes));
             int[][] cloneMap = new int[N][N];
             for (int i = 0; i < N; i++){
                 cloneMap[i] = map[i].clone();
             }
             for (int i : combRes){
-                map[virus.get(i).r][virus.get(i).c] = 3; //활성 바이러스
+                cloneMap[virus.get(i).r][virus.get(i).c] = 3; //활성 바이러스 - cloneMap으로 안함..
             }
             spread(cloneMap);
+            return;
         }
 
         for (int i = start; i < size; i++){
-            combRes[i] = i;
-            comb(cnt+1, start+1, size);
+            combRes[cnt] = i;
+            comb(cnt+1, i+1, size); //start + 1이 아니라 i + 1
         }
     }
 
@@ -83,35 +90,62 @@ public class BOJ_G3_17142_연구소3 {
 
         //활성 바이러스 위치를 큐에 넣음
         for (int i : combRes){
-            q.offer(new Pos(virus.get(i).r, virus.get(i).c));
+//            visited[virus.get(i).r][virus.get(i).c] = true;
+            q.offer(new Pos(virus.get(i).r, virus.get(i).c, 0));
         }
 
         //bfs 수행
         int lastDepth = 0;
         while(!q.isEmpty()){
             Pos cur = q.poll();
-            lastDepth = cur.depth;
+
+            boolean isEnd = true;
+            //다 차면 : 즉 0이 없음
+            for (int i = 0; i < N; i++){
+                if (isEnd) break;
+                for (int j = 0; j < N; j++){
+                    if (cloneMap[i][j] == 0) {
+                        isEnd = false;
+                        break;
+                    }
+                }
+            }
+            if (isEnd){
+                minTime = Math.min(minTime, lastDepth);
+                break;
+            }
 
             for (int di = 0; di < 4; di++){
                 int nr = cur.r + dr[di];
                 int nc = cur.c + dc[di];
-                if (nr < 0 || nr >= N || nc < 0 || nc >= N || cloneMap[nr][nc] == '1' || visited[nr][nc]) continue;
+                if (nr < 0 || nr >= N || nc < 0 || nc >= N || cloneMap[nr][nc] == 1) continue;
 
                 //벽과 인덱스 넘어선 경우를 제외하고는 바이러스가 퍼짐
-                visited[nr][nc] = true;
-                cloneMap[nr][nc] = 3;
-                q.offer(new Pos(nr, nc, cur.depth + 1));
+//                visited[nr][nc] = true;
+                lastDepth = cur.depth;
+                if (cloneMap[nr][nc] != 3){ //0, 2인 경우
+                    cloneMap[nr][nc] = 3;
+                    q.offer(new Pos(nr, nc, cur.depth + 1));
+                }
             }
         }
 
 
-        //다 차면 : 즉 이 없음
+        for (int i = 0; i < N; i++){
+            System.out.println(Arrays.toString(cloneMap[i]));
+        }
+        System.out.println(lastDepth);
+//        System.out.println(lastDepth);
+
+
+        //다 차면 : 즉 0이 없음
         for (int i = 0; i < N; i++){
             for (int j = 0; j < N; j++){
-                if (cloneMap[i][j] == 0) return;
+                if (cloneMap[i][j] == 0) {
+                    return;
+                }
             }
         }
-
         minTime = Math.min(minTime, lastDepth);
     }
 }
