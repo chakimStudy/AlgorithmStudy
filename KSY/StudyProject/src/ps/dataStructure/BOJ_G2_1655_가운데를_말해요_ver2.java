@@ -31,24 +31,16 @@ public class BOJ_G2_1655_가운데를_말해요_ver2 {
             }
 
             //Q 업데이트
-            if (i % 2 != 0) {
-                while(minQ.size() != maxQ.size()){
-                    if (minQ.size() > maxQ.size()){
-                        maxQ.add(minQ.poll());
-                    }
-                    else{
-                        minQ.add(maxQ.poll());
-                    }
+            while(true){
+                if (
+                        i%2 != 0 && (minQ.size() == maxQ.size()) ||
+                        i%2 == 0 && (minQ.size() == maxQ.size() + 1)
+                ) break;
+                if (minQ.size() > maxQ.size()){
+                    maxQ.add(minQ.poll());
                 }
-            }
-            else{
-                while(minQ.size() != maxQ.size() + 1){
-                    if (minQ.size() > maxQ.size()){
-                        maxQ.add(minQ.poll());
-                    }
-                    else{
-                        minQ.add(maxQ.poll());
-                    }
+                else{
+                    minQ.add(maxQ.poll());
                 }
             }
 
