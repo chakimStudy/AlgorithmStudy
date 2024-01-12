@@ -1,9 +1,10 @@
-package ps.ㄱSolving;
+package ps.GraphSearch;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -72,9 +73,9 @@ public class BOJ_P5_3197_백조의_호수_ver1_bfs_이분탐색 {
         //logic
         //1. 빙산이 언제 녹을 지 전처리 -> bfs
         melting();
-//        for (int i = 0; i < R; i++){
-//            System.out.println(Arrays.toString(days[i]));
-//        }
+        for (int i = 0; i < R; i++){
+            System.out.println(Arrays.toString(days[i]));
+        }
 
         //2. 백조 bfs 이분탐색 수행
         int day = binarySearch(0, 3000);
