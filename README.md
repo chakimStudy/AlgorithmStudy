@@ -101,16 +101,6 @@
 		organization repo의 main 브랜치로 Pull Request를 보냅니다.
 
 
-<br><br>
-
-## 📌 Solved Problems
-### 🚩 week 1
-| Type | 문제 | 제목 | 유형 | rank |
-| -- |--| -- |--|--|
-| BOJ | 10828 | [스택](https://www.acmicpc.net/problem/10828) | 자료구조 | silver4 |
-| BOJ | 1620 | [나는야 포켓몬 마스터 이다솜](https://www.acmicpc.net/problem/1620) | 자료구조2 | silver4 |
-| BOJ | 6416 | [트리](https://www.acmicpc.net/problem/6416) | 트리 | ? |
-| BOJ | 5618 | [공약수](https://www.acmicpc.net/problem/5618) | 수학 | Bronze2 |
 
 
 
