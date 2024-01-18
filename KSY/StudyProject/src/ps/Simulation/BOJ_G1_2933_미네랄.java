@@ -1,4 +1,4 @@
-package ps.ㄱSolving;
+package ps.Simulation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
