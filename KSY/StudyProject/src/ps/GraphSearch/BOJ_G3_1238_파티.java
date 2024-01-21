@@ -1,4 +1,4 @@
-package ps.ㄱSolving;
+package ps.GraphSearch;
 
 import java.io.BufferedReader;
 import java.io.IOException;
