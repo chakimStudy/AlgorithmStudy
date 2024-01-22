@@ -1,4 +1,4 @@
-package ps.ㄱSolving;
+package ps.GraphSearch;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +9,10 @@ public class BOJ_G4_1261_알고스팟 {
     static class Pos{
         int r, c;
         int depth;
-        public Pos(int r, int c){
+        public Pos(int r, int c, int depth){
             this.r = r;
             this.c = c;
+            this.depth = depth;
         }
     }
     static int N, M;
@@ -29,7 +30,7 @@ public class BOJ_G4_1261_알고스팟 {
             }
         }
 
-        zeroOnebfs(new Pos(0, 0));
+        zeroOnebfs(new Pos(0, 0, 0));
         System.out.println(dist[N-1][M-1]);
     }
 
@@ -38,16 +39,21 @@ public class BOJ_G4_1261_알고스팟 {
     static int[][] dist;
     private static void zeroOnebfs(Pos start) {
         //dec, dist
-        Deque<Pos> dec = new ArrayDeque();
+        PriorityQueue<Pos> pq = new PriorityQueue<>(new Comparator<Pos>() {
+            @Override
+            public int compare(Pos o1, Pos o2) {
+                return o1.depth - o2.depth;
+            }
+        });
         dist = new int[N][M];
         for (int i = 0; i < N; i++){
             Arrays.fill(dist[i], Integer.MAX_VALUE);
         }
         dist[start.r][start.c] = 0;
-        dec.add(start);
+        pq.offer(start);
 
-        while(!dec.isEmpty()){
-            Pos cur = dec.pollFirst();
+        while(!pq.isEmpty()){
+            Pos cur = pq.poll();
 
             for (int di = 0; di < 4; di++){
                 int nr = cur.r + dr[di];
@@ -57,8 +63,7 @@ public class BOJ_G4_1261_알고스팟 {
                 //거리가 갱신되면
                 if (dist[nr][nc] > dist[cur.r][cur.c] + map[nr][nc]){
                     dist[nr][nc] = dist[cur.r][cur.c] + map[nr][nc];
-                    if (map[nr][nc] == 0) dec.addFirst(new Pos(nr, nc));
-                    else dec.addLast(new Pos(nr, nc));
+                    pq.offer(new Pos(nr, nc, cur.depth + map[nr][nc]));
                 }
             }
         }
