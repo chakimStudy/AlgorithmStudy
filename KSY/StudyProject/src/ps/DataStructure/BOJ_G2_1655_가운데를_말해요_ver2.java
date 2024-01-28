@@ -1,4 +1,4 @@
-package ps.dataStructure;
+package ps.DataStructure;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package ps.dataStructure;
+package ps.DataStructure;
 
 import java.util.PriorityQueue;
 import java.util.Scanner;
